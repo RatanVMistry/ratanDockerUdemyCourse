@@ -1,0 +1,4 @@
+
+def print_hi("Ratan")
+  puts "Hi, #{name}"
+end
