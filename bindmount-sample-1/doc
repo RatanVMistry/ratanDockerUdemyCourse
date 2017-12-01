@@ -1,0 +1,15 @@
+ for testing this application run this
+go to inside this folder
+and then run docker container with 
+-v 
+
+docker run -p 80:4000 -v $(pwd):/site bretfisher/jekyll-serve
+
+where $(pwd) is a current directory
+
+you have to add file in _post
+write date first and give name 
+example 2017-03-05-ratan
+and then refresh browser and you can see the post as per date 
+
+so it shows that when you use bind mount what you change on host machine will reflect on runtime on container 
