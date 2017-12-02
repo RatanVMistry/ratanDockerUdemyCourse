@@ -1,0 +1,40 @@
+version: '2'
+#services start from here we need two services one for webserver which is drupal
+#one is database here we are using postgres
+
+services:
+#Service name also work as the DNS name for that container so you can reach that container
+#docker-compose create own network and it join the contaniers on that
+  drupal:
+#image is for the base image you want to run oncontainer
+    image: drupal:8.2-apache
+#its expose the ports (host port to container port mappinng)
+
+    ports:
+      - '8080:80'
+#for the persistance data you can create your own dir on host machine and bind mount them to container
+    volumes:
+     - drupal-modules:/var/www/html/modules
+     - drupal-profiles:/var/www/html/profiles
+     - drupal-themes:/var/www/html/themes
+     - drupal-sites:/var/www/html/sites
+    restart: always
+#second service -second container for DB postgres
+  postgres:
+    image: postgres:9.6
+    environment:
+       POSTGRES_PASSWORD: example
+    restart: always
+#create voulms with this 
+#you can check that with 'docker volume ls'
+#you can check network with 'docker network ls' 
+volumes:
+ drupal-modules:
+ drupal-profiles:
+ drupal-themes:
+ drupal-sites:
+
+
+#after this you have to run 'docker-compose up -d' this will run containers 
+#you can check logs for each container with 'docker container log containername -f' -f shows continuous logs
+
