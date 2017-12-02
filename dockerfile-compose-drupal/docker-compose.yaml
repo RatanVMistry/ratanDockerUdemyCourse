@@ -16,11 +16,14 @@ services:
   image: postgres:9.6
   environment:
    POSTGRES_PASSWORD: example
+  volumes:
+   - drupal_data:/var/lib/postgresql/data
   restart: always
 #create voulms with this 
 #you can check that with 'docker volume ls'
 #you can check network with 'docker network ls' 
 volumes:
+ drupal_data:
  drupal-modules:
  drupal-profiles:
  drupal-themes:
