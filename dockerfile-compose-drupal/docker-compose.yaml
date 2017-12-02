@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+ drupal:
+  build:
+    context: .
+    dockerfile: Dockerfile
+  ports:
+   - '8080:80'
+  volumes:
+   - drupal-modules:/var/www/html/modules
+   - drupal-profiles:/var/www/html/profiles
+   - drupal-themes:/var/www/html/themes
+   - drupal-sites:/var/www/html/sites
+ postgres:
+  image: postgres:9.6
+  environment:
+   POSTGRES_PASSWORD: example
+  restart: always
+#create voulms with this 
+#you can check that with 'docker volume ls'
+#you can check network with 'docker network ls' 
+volumes:
+ drupal-modules:
+ drupal-profiles:
+ drupal-themes:
+ drupal-sites:
+
